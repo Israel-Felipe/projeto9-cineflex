@@ -1,9 +1,9 @@
-export default function TimePage () {
+export default function AssentosPage () {
 
     return (
         <>
          <h1>
-            Teste
+            AssentosPage
          </h1>
         </>
     )

@@ -6,7 +6,6 @@ import Film from "../Film";
 
 
 export default function HomePage () {
-
     const [listFilm, setListFilm] = useState([]);
 
     useEffect(() => {
@@ -19,12 +18,10 @@ export default function HomePage () {
 
     return (
         <>
-        
             <div className="title"><h2>Selecione o filme</h2></div>
-            
-
             <div className="listaFilmes">
-                {listFilm.map((film, index) => <Film key={index} imgFilm={film.posterURL} titleFilm={film.title}/> )}
+                {listFilm.map((film, index) => 
+                <Film key={index} imgFilm={film.posterURL} titleFilm={film.title} idFilm={film.id}/> )}
             </div>
         </>
     )
