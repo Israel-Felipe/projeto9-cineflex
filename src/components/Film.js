@@ -10,3 +10,4 @@ export default function Film ({imgFilm, titleFilm, idFilm}) {
         </div> 
     )
 }
+
