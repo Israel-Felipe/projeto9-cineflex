@@ -124,6 +124,7 @@ body {
     gap: 7px;
     padding: 0 25px;
     flex-wrap: wrap;
+    margin-top:-20px;
 }
 
 .disponivel, .indisponivel, .selecionado   {
@@ -148,4 +149,37 @@ body {
 .selecionado {
     background: #8DD7CF;
     border: 1px solid #45BDB0;
+}
+
+.legendas {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 25px;
+}
+
+.legenda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+    color: #4E5A65;
+}
+
+.legenda p {
+    margin-top: -7px;
+}
+
+form {
+    width: 100vw;
+    padding: 40px 25px;
+}
+
+form input {
+    width: 100%;
+    height: 50px;
+    padding: 18px;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    margin: 5px 0 15px 0;
 }

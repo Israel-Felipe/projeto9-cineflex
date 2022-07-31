@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 
 export default function Sessao({data, weekday, horarios}) {
-    console.log(horarios)
 
     function Horario ({name, idSessao}) {
         return (

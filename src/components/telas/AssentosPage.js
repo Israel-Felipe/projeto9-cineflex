@@ -2,21 +2,24 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import Footer2 from "../Footer";
- 
+import Footer2 from "../Footer2"
+import Legenda from "../Legenda"
+import Usuario from "../Usuario"
 
 export default function AssentosPage () {
     const { idSessao } = useParams();
-    const [infos, setInfos] = useState([]);
     const [assentos, setAssentos] = useState([]);
+    const [movie, setMovie] = useState([]);
+    const [data, setData] = useState([]);
+    const [info, setInfo] = useState([]);
 
     useEffect (() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`);
 
         promise.then((res) => 
-        {setAssentos(res.data.seats); setInfos(res.data)}
+        {setAssentos(res.data.seats); setMovie(res.data.movie); setData(res.data.day); setInfo(res.data)}
         )
-
+        
     },[]);
 
     function Assento ({idAssento, nameAssento, disponivel}) {
@@ -48,14 +51,17 @@ export default function AssentosPage () {
     return (
         <>
         <div className="body">
-        <div className="title"><h2>Selecione o(s) assento(s)</h2></div>
-        <div className="assentos">
-            {assentos.map((assento, index) => 
-            <Assento key={index} idAssento={assento.id} nameAssento={assento.name} disponivel={assento.isAvailable}/>)}
+            <div className="title"><h2>Selecione o(s) assento(s)</h2></div>
+            <div className="assentos">
+                {assentos.map((assento, index) => 
+                <Assento key={index} idAssento={assento.id} nameAssento={assento.name} disponivel={assento.isAvailable}/>)}
+            </div>
+            <Legenda />
+            <Usuario />
+            
         </div>
-
-        </div>
-        {/* <Footer2 footerImg={assentos.movie.posterURL} footerTitle={assentos.movie.title}/> */}
+        
+        <Footer2 footerImg={movie.posterURL} footerTitle={movie.title} footerWeek={data.weekday} footerHor={info.name}/>
         </>
     )
 }
