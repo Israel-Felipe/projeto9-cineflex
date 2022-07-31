@@ -118,3 +118,34 @@ body {
     width: 80%;
 }
 
+.assentos {
+    display: flex;
+    justify-content: space-around;
+    gap: 7px;
+    padding: 0 25px;
+    flex-wrap: wrap;
+}
+
+.disponivel, .indisponivel, .selecionado   {
+    width: 26px;
+    height: 26px;
+    background: #C3CFD9;
+    border: 1px solid #808F9D;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-size: 11px;
+    margin-bottom: 15px;
+}
+
+.indisponivel {
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+}
+
+.selecionado {
+    background: #8DD7CF;
+    border: 1px solid #45BDB0;
+}
