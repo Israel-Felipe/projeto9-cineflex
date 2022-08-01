@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./telas/HomePage";
 import AssentosPage from "./telas/AssentosPage"
 import SessoesPage from "./telas/SessoesPage";
-
+import SucessoPage from "./telas/SucessoPage";
 
 
 export default function App() {
@@ -16,6 +16,7 @@ export default function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/sessoes/:idFilme" element={<SessoesPage />} />
                     <Route path="/assentos/:idSessao" element={<AssentosPage />} />
+                    <Route path="/sucesso" element={<SucessoPage />} />
                 </Routes>
         </BrowserRouter>
         </>
