@@ -6,16 +6,18 @@ import Footer2 from "../Footer2"
 import Legenda from "../Legenda"
 import Reserva from "../Reserva"
 
-function Assento ({idAssento, nameAssento, disponivel, assSelecionados, setAssSelecionados}) {
+function Assento ({idAssento, nameAssento, disponivel, nomeSelecionados, setNomeSelecionados, idSelecionados, setIdSelecionados}) {
     const [selecionado, setSelecionado] = useState(false);
     const [classColor, setClasscolor] = useState("disponivel")
 
     useEffect (() => {
         if (selecionado === true) {
-            setAssSelecionados([...assSelecionados, {idAssento, nameAssento}]);
+            setNomeSelecionados([...nomeSelecionados, nameAssento]);
+            setIdSelecionados([...idSelecionados, idAssento]);
             setClasscolor("selecionado")
         } else {
-            setAssSelecionados(assSelecionados.filter((value => value.idAssento !== idAssento)))
+            setNomeSelecionados(nomeSelecionados.filter((value => value !== nameAssento)))
+            setIdSelecionados(idSelecionados.filter((value => value !== idAssento)))
             setClasscolor("disponivel");
         }
     }, [selecionado]);
@@ -42,9 +44,8 @@ export default function AssentosPage () {
     const [movie, setMovie] = useState([]);
     const [data, setData] = useState([]);
     const [info, setInfo] = useState([]);
-    const [assSelecionados, setAssSelecionados] = useState([])
-
-    console.log(assSelecionados)
+    const [nomeSelecionados, setNomeSelecionados] = useState([])
+    const [idSelecionados, setIdSelecionados] = useState([])
 
     useEffect (() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`);
@@ -62,10 +63,10 @@ export default function AssentosPage () {
             <div className="assentos">
                 {assentos.map((assento, index) => 
                 <Assento key={index} idAssento={assento.id} nameAssento={assento.name} disponivel={assento.isAvailable}
-                assSelecionados={assSelecionados} setAssSelecionados={setAssSelecionados}/>)}
+                nomeSelecionados={nomeSelecionados} setNomeSelecionados={setNomeSelecionados} idSelecionados={idSelecionados} setIdSelecionados={setIdSelecionados}/>)}
             </div>
             <Legenda />
-            <Reserva assSelecionados={assSelecionados} title={movie.title} weekday={data.weekday}/>
+            <Reserva nomeSelecionados={nomeSelecionados} idSelecionados={idSelecionados} title={movie.title} data={data.date} horario={info.name}/>
         </div>
         
         <Footer2 footerImg={movie.posterURL} footerTitle={movie.title} footerWeek={data.weekday} footerHor={info.name}/>

@@ -11,7 +11,9 @@ export default function App() {
     return (
         <>
         <BrowserRouter>
-            <div className="head"><h1>CINEFLEX</h1></div>
+            <div className="head">
+                <h1>CINEFLEX</h1>
+            </div>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/sessoes/:idFilme" element={<SessoesPage />} />

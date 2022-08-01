@@ -2,13 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Reserva({assSelecionados, title, weekday}) {
+export default function Reserva({nomeSelecionados, idSelecionados, title, data, horario}) {
     const navigate = useNavigate();
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
     
-    const idSelecionados = assSelecionados.map((value) => value.idAssento)
-
     function fazerReserva () {
         const infosAPI = {
             ids: idSelecionados,
@@ -17,18 +15,17 @@ export default function Reserva({assSelecionados, title, weekday}) {
         }
         const infosSucesso = {
             title,
-            weekday,
-            assSelecionados,
+            data,
+            horario,
+            nomeSelecionados,
             nome,
             cpf
         }
-
+        
         const promise = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", infosAPI);
             promise.then(navigate("/sucesso", {replace: false, state: infosSucesso} ));
-            console.log(infosAPI)
     }
 
-    console.log(assSelecionados, title, weekday)
     return (
         <form onSubmit={fazerReserva}>
             <p>Nome do comprador:</p>
